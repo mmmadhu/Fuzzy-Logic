@@ -1,0 +1,85 @@
+[System]
+Name='ROBOT'
+Type='mamdani'
+Version=2.0
+NumInputs=6
+NumOutputs=1
+NumRules=10
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='TACTILE'
+Range=[0 1]
+NumMFs=2
+MF1='DETECTED':'dsigmf',[5.49 -0.5 4.52616288955363 0.5]
+MF2='NOTDETECTED':'dsigmf',[5.493 0.5 5.493 1.5]
+
+[Input2]
+Name='ULTRASONICENTER'
+Range=[0 1]
+NumMFs=3
+MF1='FAR':'trimf',[-0.5 0 0.5]
+MF2='CLOSE':'trimf',[-0.00264550264550256 0.497354497354497 0.997354497354497]
+MF3='VERYCLOSE':'trimf',[0.507936507936508 1.00793650793651 1.50793650793651]
+
+[Input3]
+Name='LASER'
+Range=[0 1]
+NumMFs=5
+MF1='VERYFAR':'trimf',[-0.25 0 0.25]
+MF2='FAR':'trimf',[0 0.25 0.5]
+MF3='NOTVERYCLOSE':'trimf',[0.247354497354497 0.497354497354497 0.747354497354497]
+MF4='CLOSE':'trimf',[0.5 0.75 1]
+MF5='VERYCLOSE':'trimf',[0.75 1 1.25]
+
+[Input4]
+Name='VISUAL'
+Range=[0 1]
+NumMFs=5
+MF1='WHITE':'trimf',[-0.25 0 0.25]
+MF2='RED':'trimf',[-0.00264550264550256 0.247354497354497 0.497354497354497]
+MF3='GREEN':'trimf',[0.25 0.5 0.75]
+MF4='BLUE':'trimf',[0.5 0.75 1]
+MF5='OTHES':'trimf',[0.75 1 1.25]
+
+[Input5]
+Name='ULTRASONICLEFT'
+Range=[0 1]
+NumMFs=3
+MF1='FAR':'trimf',[-0.416666666666667 0 0.416666666666667]
+MF2='CLOSE':'trimf',[0.0833333333333333 0.5 0.916666666666667]
+MF3='VERYCLOSE':'trimf',[0.578042328042328 0.994708994708995 1.41137566137566]
+
+[Input6]
+Name='ULTRASONICRIGHT'
+Range=[0 1]
+NumMFs=3
+MF1='FAR':'trimf',[-0.416666666666667 0 0.416666666666667]
+MF2='CLOSE':'trimf',[0.0833333333333333 0.5 0.916666666666667]
+MF3='VERYCLOSE':'trimf',[0.5833 1 1.417]
+
+[Output1]
+Name='ROBOTSENSOR'
+Range=[0 1]
+NumMFs=5
+MF1='MFORWARD':'trimf',[-0.25 0 0.25]
+MF2='MBACKWARD':'trimf',[0 0.25 0.5]
+MF3='LEFT':'trimf',[0.25 0.5 0.75]
+MF4='RIGHT':'trimf',[0.494708994708995 0.744708994708995 0.994708994708995]
+MF5='STOP':'trimf',[0.75 1 1.25]
+
+[Rules]
+2 1 0 1 0 0, 1 (1) : 1
+2 0 0 4 1 0, 3 (1) : 1
+2 0 0 3 0 1, 4 (1) : 1
+0 0 0 2 0 0, 5 (1) : 1
+1 0 3 0 0 0, 2 (1) : 1
+0 3 3 0 0 0, 2 (1) : 1
+0 3 0 0 1 2, 3 (1) : 1
+0 3 0 0 2 1, 4 (1) : 1
+1 0 0 0 0 0, 5 (1) : 1
+0 0 5 0 0 0, 5 (1) : 1
